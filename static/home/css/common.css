@@ -1,0 +1,376 @@
+/* ============================================================
+   公共 vXX 字体覆盖样式
+   原内联在各个 HTML 页面中，现统一管理
+   ============================================================ */
+
+/* === 通用 vXX 字号固定 px（覆盖 vw 单位） === */
+body .v14 { font-size: 14px; }
+body .v15 { font-size: 15px; }
+body .v16 { font-size: 16px; }
+body .v17 { font-size: 17px; }
+body .v18 { font-size: 18px; }
+body .v20 { font-size: 20px; }
+body .v22 { font-size: 22px; }
+body .v24 { font-size: 24px; }
+body .v34 { font-size: 34px; }
+body .v48 { font-size: 48px; }
+body .v59 { font-size: 52px; }
+body .v60 { font-size: 60px; }
+
+/* 产品详情页作用域 */
+.md-prod-1 .v14 { font-size: 14px; }
+.md-prod-1 .v15 { font-size: 15px; }
+.md-prod-1 .v16 { font-size: 16px; }
+.md-prod-1 .v17 { font-size: 17px; }
+.md-prod-1 .v18 { font-size: 18px; }
+.md-prod-1 .v20 { font-size: 20px; }
+.md-prod-1 .v22 { font-size: 22px; }
+.md-prod-1 .v24 { font-size: 24px; }
+
+.side .v16 { font-size: 16px; }
+.side .v18 { font-size: 18px; }
+.side .v22 { font-size: 22px; }
+
+/* Header 搜索栏 */
+.head-1 .search.v14 { font-size: 14px; }
+.head-1 .search .search-ipt { font-size: 14px; }
+.head-1 .search .search-btn { font-size: 14px; }
+.head-1 .links.v18 { font-size: 15px; }
+
+/* 搜索弹窗 */
+.md-search.v18 { font-size: 16px; }
+.md-search .ipt { font-size: 15px; }
+.md-search .btn { font-size: 15px; }
+
+/* 面包屑 */
+.md-bread.v16 { font-size: 13px; }
+
+/* 分页 */
+.m-pages, .m-pages.v16 { font-size: 14px; }
+.m-pages .item { font-size: 14px; }
+.m-pages .ipt { font-size: 13px; width: 50px; height: 34px; }
+.m-pages .btn { font-size: 13px; height: 34px; padding: 0 12px; }
+.m-pages .form span { font-size: 13px; }
+
+/* Footer */
+.md-footer .v14 { font-size: 14px; }
+.md-footer .v15 { font-size: 15px; }
+.md-footer .v17 { font-size: 17px; }
+.md-footer .v18 { font-size: 18px; }
+
+/* 2026 brand logo refresh */
+.md-header .head-1 .layout {
+    min-height: 76px;
+}
+
+.md-header .logo .logo-img {
+    width: 68px !important;
+    height: 68px !important;
+    object-fit: contain !important;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.md-header .logo .logo-tx {
+    display: none !important;
+}
+
+.md-footer .logo img {
+    width: 90px !important;
+    height: auto !important;
+    border-radius: 6px;
+    background: #fff;
+}
+
+/* Product category page layout fixes */
+.md-prod-1 .prod-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0 18px;
+    margin: 0 0 22px;
+    border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.md-prod-1 .prod-toolbar__count,
+.md-prod-1 .prod-toolbar__sort span {
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.md-prod-1 .prod-toolbar__sort {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.md-prod-1 .prod-toolbar__sort button {
+    min-height: 38px;
+    padding: 8px 16px;
+    border: 1px solid rgba(15, 118, 110, 0.20);
+    border-radius: 999px;
+    background: #fff;
+    color: #475467;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.md-prod-1 .prod-toolbar__sort button:hover,
+.md-prod-1 .prod-toolbar__sort button.active {
+    border-color: #0f766e;
+    background: #0f766e;
+    color: #fff;
+}
+
+.md-prod-1 .m-prod-list,
+.md-prod-1 .m-prod-list.cols-4 {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
+}
+
+.md-prod-1 .m-prod-list .li,
+.md-prod-1 .m-prod-list.cols-4 .li {
+    display: flex !important;
+    flex-direction: column;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    min-width: 0;
+}
+
+.md-prod-1 .m-prod-list .li:nth-of-type(2n),
+.md-prod-1 .m-prod-list .li:nth-of-type(3n),
+.md-prod-1 .m-prod-list.cols-4 .li:nth-of-type(4n) {
+    margin-right: 0 !important;
+}
+
+.md-prod-1 .m-prod-list .c-pic {
+    aspect-ratio: 1 / 1;
+    background: #fff;
+}
+
+.md-prod-1 .m-prod-list .img {
+    position: absolute !important;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    background-color: #f7faf9;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.md-prod-1 .m-prod-list .img img[src] {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.md-prod-1 .m-prod-list .img img:not([src]) {
+    display: none !important;
+}
+
+/* Case page layout fixes */
+.md-case-1 {
+    padding-top: 64px;
+    padding-bottom: 96px;
+}
+
+.md-case-1 .layout {
+    width: min(100% - 48px, 1200px);
+    max-width: calc(100% - 48px);
+}
+
+.md-case-1 .m-case-list {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: start;
+    border-top: 0;
+}
+
+.md-case-1 .m-case-list .li {
+    display: flex !important;
+    flex-direction: column;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(17, 24, 39, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(17, 24, 39, 0.06);
+    text-decoration: none;
+}
+
+.md-case-1 .m-case-list .li:nth-of-type(3n) {
+    margin-right: 0 !important;
+}
+
+.md-case-1 .m-case-list .c-pic {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #f7faf9;
+}
+
+.md-case-1 .m-case-list .img {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    padding: 0 !important;
+    background-color: #f7faf9;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: none;
+}
+
+.md-case-1 .m-case-list .img img[src] {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.md-case-1 .m-case-list .text {
+    padding: 16px 18px 18px;
+    text-align: left;
+}
+
+.md-case-1 .m-case-list .tit {
+    display: block;
+    min-height: 48px;
+    color: #1f2937;
+    line-height: 1.45;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+
+.md-contact-1 .row-2 .lf {
+    width: clamp(420px, 40%, 520px);
+    padding: 0 36px;
+}
+
+.md-contact-1 .row-2 .msg {
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.md-contact-1 .row-2 .msg .tx {
+    flex: 1;
+    min-width: 0;
+}
+
+.md-contact-1 .row-2 .msg .position,
+.md-contact-1 .row-2 .msg .name {
+    max-width: 100%;
+    line-height: 1.25;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow-wrap: normal;
+}
+
+.md-contact-1 .row-2 .msg .position {
+    margin-top: 0;
+}
+
+.md-contact-1 .row-2 .msg .name {
+    margin-top: 12px;
+}
+
+.md-contact-1 .row-2 .msg .contact-qr {
+    display: block;
+    width: 180px;
+    min-width: 180px;
+    padding: 0;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.md-contact-1 .row-2 .msg .contact-qr img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+/* === 响应式 vXX 覆盖 === */
+@media (max-width: 900px) {
+    html { font-size: 40px; }
+    body .v59 { font-size: 32px; }
+    body .v48 { font-size: 30px; }
+    body .v24 { font-size: 18px; }
+    body .v18 { font-size: 16px; }
+    body .v16 { font-size: 14px; }
+    body .v14 { font-size: 13px; }
+
+    .md-header .head-1 .layout {
+        min-height: 64px;
+    }
+
+    .md-header .logo .logo-img {
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .md-prod-1 .prod-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .md-prod-1 .m-prod-list,
+    .md-prod-1 .m-prod-list.cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .md-case-1 .layout {
+        width: min(100% - 32px, 720px);
+        max-width: calc(100% - 32px);
+    }
+
+    .md-case-1 .m-case-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .md-contact-1 .row-2 .lf {
+        width: 100%;
+        padding: 0 24px;
+    }
+
+    .md-contact-1 .row-2 .msg {
+        align-items: center;
+        gap: 14px;
+    }
+
+    .md-contact-1 .row-2 .msg .contact-qr {
+        width: 150px;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 560px) {
+    .md-prod-1 .m-prod-list,
+    .md-prod-1 .m-prod-list.cols-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .md-case-1 .m-case-list {
+        grid-template-columns: 1fr;
+    }
+}

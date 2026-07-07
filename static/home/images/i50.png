@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="网站建设：互诺科技 - http://www.hunuo.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <title>系统发生错误</title>
+</head>
+<body style="margin:0; padding:0">
+<div class="copyright" style="margin: 25px;">
+    <p STYLE="font-size: 20px;">错误信息：print_r() expects at most 2 arguments, 3 given文件：/home/changsheng/changsheng.us6.hostcname.net2/public_html/app/en/controller/ErrorController.php行数：124行</p>
+    <p>您可以尝试：</p>
+    <p>1. 检查输入的网址，或者返回<a href="javascript:history.go(-1);" class="back-page">上一页</a></p>
+    <p>2. 快速进入<a href="/" class="back-page">首页</a></p>
+</div>
+</body>
+</html>

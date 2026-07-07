@@ -1,0 +1,554 @@
+/* ============================================================
+   Apple-Inspired UI — Progressive Enhancements
+   Does NOT duplicate home.css/style.css overrides
+   ============================================================ */
+
+/* ============================================================
+   PRODUCT LISTING CARDS — Enhanced by style.css
+   ============================================================ */
+
+/* ============================================================
+   PRODUCT TOOLBAR — Sort Bar (injected by JS)
+   ============================================================ */
+.prod-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.prod-toolbar__count {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.prod-toolbar__sort {
+  display: flex;
+  gap: 0.5rem;
+}
+.prod-toolbar__sort button {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.prod-toolbar__sort button:hover,
+.prod-toolbar__sort button.active {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+@media (max-width: 500px) {
+  .prod-toolbar { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+}
+/* ============================================================
+   HOMEPAGE PRODUCT CARDS — Same Grid Treatment
+   ============================================================ */
+.md-home-prod .prod-list .list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 900px) { .md-home-prod .prod-list .list { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .md-home-prod .prod-list .list { grid-template-columns: 1fr; } }
+
+.md-home-prod .prod-list .list .li {
+  width: auto !important;
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal) var(--ease-apple);
+}
+.md-home-prod .prod-list .list .li:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ============================================================
+   SECTION TITLES — Clean Apple-Style Headlines
+   ============================================================ */
+.md-home-prod .title,
+.md-home-about .hd .title,
+.md-home-why .title,
+.md-home-cert .title {
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* ============================================================
+   PRODUCT CATEGORY HERO SECTIONS — Better readability
+   ============================================================ */
+.md-home-prod .cat .cat-name {
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.md-home-prod .cat .intro {
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ============================================================
+   CERTIFICATE SECTION — Replace border-image with clean shadow
+   ============================================================ */
+.md-home-cert .list .img img {
+  border-image: none !important;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 0.1rem;
+}
+.md-home-cert .list .swiper-slide-active .img img {
+  border-image: none !important;
+  padding: 0.12rem;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   FOOTER SOCIAL ICONS — Larger, Tap-Friendly
+   ============================================================ */
+.md-footer .share .icon img {
+  height: 1.5rem;
+  min-height: 22px;
+  width: auto;
+}
+.md-footer .share .item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+}
+.md-footer .share .item:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   MARKET SECTION ICONS — Shadow & hover lift
+   ============================================================ */
+.md-home-market-2 .icons .icon {
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+  display: inline-block;
+}
+.md-home-market-2 .icons .icon:hover {
+  transform: scale(1.12);
+  box-shadow: var(--shadow-md);
+}
+.md-home-market-2 .section-2 .item {
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+/* ============================================================
+   WHY US SECTION — Cleaner cards
+   ============================================================ */
+.md-home-why .view .text {
+  background: var(--color-bg-card);
+}
+
+/* ============================================================
+   PAGE BANNER — Product category pages
+   ============================================================ */
+.md-banner .tit {
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   SIDEBAR — Category tree polish
+   ============================================================ */
+.md-prod-1 .side .cat-item > .cat-link {
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+/* ============================================================
+   BREADCRUMB — Subtle refinement
+   ============================================================ */
+.md-bread a:hover {
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   SECTION SPACING — Apple-style generous whitespace
+   ============================================================ */
+.md-home-prod { padding-bottom: var(--space-3xl); }
+.md-home-prod .title { padding: var(--space-3xl) 0 var(--space-xl); }
+.md-home-about { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+.md-home-why { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+.md-home-cert { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+.md-home-market-2 { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+
+/* ============================================================
+   TYPOGRAPHY — Clean Apple hierarchy
+   ============================================================ */
+.md-home-prod .title,
+.md-home-about .hd .title,
+.md-home-why .title,
+.md-home-cert .title,
+.md-home-market-2 .title {
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Section subtitles */
+.md-home-about .hd .more {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   CARD REFINEMENTS — Consistent Apple card language
+   ============================================================ */
+/* Ensure all card images use object-fit containment */
+.m-prod-list .c-pic .img img,
+.md-home-prod .prod-list .c-pic .img img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================
+   RESPONSIVE — Touch-friendly tap targets
+   ============================================================ */
+@media (max-width: 900px) {
+  .m-prod-list .m-more,
+  .md-home-prod .prod-list .m-more {
+    min-height: 2.5rem;
+    font-size: var(--text-base);
+  }
+}
+
+/* ============================================================
+   2026 UI refresh -- industrial catalog system
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fbfaf7;
+  color: var(--color-text-body);
+  font-family: var(--font-primary);
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.layout {
+  width: min(1200px, 92vw);
+  max-width: 92vw;
+}
+
+@media (min-width: 1101px) {
+  .md-header {
+    z-index: 1000;
+    background: rgba(251, 250, 247, 0.92);
+    border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+  }
+
+  .md-header .head-1,
+  .md-header .head-2 {
+    background: transparent !important;
+    color: var(--color-text-primary);
+  }
+
+  .md-header .head-1 {
+    border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+  }
+
+  .md-header .head-1 .layout,
+  .md-header .head-2 .layout {
+    min-height: 54px;
+    padding: 0;
+  }
+
+  .md-header .logo .logo-img {
+    height: 34px;
+  }
+
+  .md-header .logo .logo-tx {
+    margin-left: 16px;
+    padding-left: 16px;
+    border-left: 1px solid rgba(17, 24, 39, 0.16);
+  }
+
+  .md-header .logo .t1,
+  .md-header .logo .t2,
+  .md-header .links,
+  .md-header .nav .a1 {
+    letter-spacing: 0;
+  }
+
+  .md-header .links {
+    gap: 14px;
+    margin-left: 24px;
+  }
+
+  .md-header .links .link {
+    margin-right: 0;
+    color: var(--color-text-secondary);
+  }
+
+  .md-header .links .link:hover {
+    color: var(--color-accent);
+  }
+
+  .md-header .search {
+    min-height: 38px;
+    height: 38px;
+    border: 1px solid rgba(17, 24, 39, 0.10);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .md-header .search-ipt {
+    width: 160px;
+    color: var(--color-text-primary);
+  }
+
+  .md-header .search-btn {
+    padding: 0 16px;
+    color: #fff;
+    background: var(--color-accent);
+  }
+
+  .md-header .nav .ul1 {
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .md-header .nav .a1-wrap::after {
+    display: none;
+  }
+
+  .md-header .nav .a1 {
+    line-height: 42px;
+    padding: 0 14px;
+    border-radius: var(--radius-pill);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .md-header .nav .li1.on .a1,
+  .md-header .nav .li1:hover .a1 {
+    background: var(--color-accent-light);
+    color: var(--color-accent-dark);
+  }
+}
+
+.md-ban {
+  background: #101820;
+}
+
+.md-ban .media img,
+.md-ban .media video {
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.md-ban .text {
+  background: linear-gradient(90deg, rgba(16, 24, 32, 0.82), rgba(16, 24, 32, 0.24));
+}
+
+.md-ban .text .layout {
+  max-width: 1200px;
+}
+
+.md-ban .tit,
+.md-ban .desc,
+.section-title strong,
+.section-title p,
+.m-prod-list .tit,
+.md-prod-1 .side-tit {
+  letter-spacing: 0 !important;
+}
+
+.md-subnav {
+  background: #fff;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.04);
+}
+
+.md-subnav .li {
+  border-radius: var(--radius-md);
+}
+
+.md-subnav .li:hover,
+.md-subnav .li.on {
+  background: var(--color-accent-light);
+}
+
+.m-prod-list,
+.m-prod-list.cols-4 {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.m-prod-list .li,
+.m-prod-list.cols-4 .li,
+.m-news-list .li,
+.m-case-list .li {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.06);
+}
+
+.m-prod-list .li:hover,
+.m-news-list .li:hover,
+.m-case-list .li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(17, 24, 39, 0.10);
+}
+
+.m-prod-list .img {
+  background-color: #f4f7f5;
+}
+
+.m-prod-list .text {
+  padding: 20px;
+}
+
+.m-prod-list .tit {
+  color: var(--color-text-primary);
+  line-height: 1.35;
+}
+
+.m-prod-list .desc {
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+}
+
+.m-prod-list .m-more,
+.m-more,
+.c-btn {
+  border-radius: var(--radius-pill) !important;
+}
+
+.md-prod-1 {
+  background: #f5f7f6;
+}
+
+.md-prod-1 .side-cnt,
+.md-contact-2 form,
+.md-footer .foot-1 {
+  border-radius: var(--radius-lg);
+}
+
+.md-prod-1 .side-cnt {
+  background: #fff;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.05);
+}
+
+.md-prod-1 .cat-link.current,
+.md-prod-1 .cat-link:hover {
+  background: var(--color-accent-light);
+  color: var(--color-accent-dark);
+}
+
+.md-footer .foot-1 {
+  margin: 0 auto;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.16), rgba(217, 119, 6, 0.08)),
+    var(--color-bg-footer) !important;
+}
+
+.md-footer .foot-1 .layout {
+  gap: 56px;
+}
+
+.md-footer .nav .a1,
+.md-footer .foot-1 .lf .t1 {
+  color: #fff;
+  letter-spacing: 0;
+}
+
+.md-footer .nav .a2,
+.md-footer .contact {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.md-footer .nav .a2:hover,
+.md-footer .contact a:hover {
+  color: #fff;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    width: min(100% - 32px, 920px);
+    max-width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 900px) {
+  .m-prod-list,
+  .m-prod-list.cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .layout {
+    width: min(100% - 24px, 520px);
+    max-width: calc(100% - 24px);
+  }
+
+  .m-prod-list,
+  .m-prod-list.cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .md-ban .media img,
+  .md-ban .media video {
+    min-height: 260px;
+  }
+}
+
+/* Brand logo refresh */
+.md-header .logo .logo-img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.md-header .logo .logo-tx {
+  display: none;
+}
+
+.md-footer .logo img {
+  width: 86px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+@media (max-width: 1100px) {
+  .md-header .logo .logo-img {
+    width: 46px;
+    height: 46px;
+  }
+}

@@ -1,0 +1,491 @@
+/* ============================================================
+   产品列表页公共样式（6个页面共享）
+   来源：commercial-shelving / home-shelving / hot-e-commerce-products
+         customized-shelving / diy-parts / stock-product
+   ============================================================ */
+
+/* === 全局基准 === */
+html {
+    font-size: clamp(40px, calc(100vw / 1920 * 100), 62.5px);
+}
+
+/* === 产品列表容器 === */
+.md-prod-1 {
+    background: #fafafa;
+}
+.md-prod-1 .main {
+    padding: 30px 0 60px;
+}
+
+/* === 面包屑 === */
+.md-bread {
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #999;
+}
+.md-bread a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.md-bread a:hover {
+    color: #0071e3;
+}
+
+/* === 侧栏 === */
+.md-prod-1 .side {
+    top: 85px;
+    width: 260px;
+    min-width: 260px;
+}
+.md-prod-1 .side-cnt {
+    padding: 28px 22px 32px 28px;
+    min-height: auto;
+    background: #fff;
+    border-right: 1px solid #eee;
+}
+.md-prod-1 .side-tit {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1d1d1f;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #1d1d1f;
+    letter-spacing: 0.02em;
+}
+.md-prod-1 .side .cat-item-1 {
+    margin-bottom: 2px;
+}
+.md-prod-1 .side .cat-link-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+.md-prod-1 .side .cat-link-1:hover {
+    background: #f5f5f7;
+    color: #0071e3;
+}
+.md-prod-1 .side .cat-item.open > .cat-link-1 {
+    color: #0071e3;
+    background: rgba(0,113,227,.04);
+    font-weight: 600;
+}
+.md-prod-1 .side .cat-item .icon {
+    font-size: 10px;
+    transition: transform 0.2s;
+}
+.md-prod-1 .side .cat-item.open > .cat-link-1 .icon {
+    transform: rotate(90deg);
+}
+.md-prod-1 .side .cat-list-2 {
+    padding-left: 12px;
+}
+.md-prod-1 .side .cat-link-2 {
+    display: block;
+    padding: 7px 12px;
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.md-prod-1 .side .cat-link-2:hover,
+.md-prod-1 .side .cat-link-2.current {
+    color: #0071e3;
+    background: rgba(0,113,227,.03);
+}
+.md-prod-1 .main {
+    width: calc(100% - 260px);
+}
+
+/* === 产品卡片网格 === */
+.m-prod-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 20px;
+    margin: 0;
+}
+.m-prod-list .li {
+    display: block;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    margin: 0;
+    width: auto;
+}
+.m-prod-list .li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.1);
+}
+.m-prod-list .li:nth-of-type(3n) {
+    margin-right: 0;
+}
+
+/* 图片区域 */
+.m-prod-list .c-pic {
+    position: relative;
+    background: #f4f4f6;
+    overflow: hidden;
+}
+.m-prod-list .img {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    background-color: #f4f4f6;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.m-prod-list .li:hover .img {
+    transform: scale(1.06);
+}
+.m-prod-list .img img {
+    display: none;
+}
+
+/* 文字区域 */
+.m-prod-list .text {
+    padding: 18px 16px 20px;
+    text-align: left;
+}
+.m-prod-list .tit {
+    font-size: 15px !important;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+}
+.m-prod-list .desc {
+    font-size: 13px !important;
+    color: #999;
+    margin: 0 0 14px;
+    line-height: 1.4;
+}
+.m-prod-list .more {
+    margin: 0;
+}
+.m-prod-list .m-more {
+    display: inline-block;
+    min-width: auto;
+    min-height: auto;
+    line-height: 1;
+    padding: 8px 22px;
+    font-size: 13px;
+    color: #0071e3;
+    border: 1.5px solid #0071e3;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.25s;
+    background: transparent;
+}
+.m-prod-list .li:hover .m-more {
+    background: #0071e3;
+    color: #fff;
+}
+
+/* ============================================================
+   [C1 专属] 增强动效
+   仅 commercial-shelving / home-shelving 原内联中包含
+   对 C2 页面同样生效（增强视觉效果，无副作用）
+   ============================================================ */
+.m-prod-list .tit {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+.m-prod-list .desc {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+.m-prod-list .li:hover {
+    box-shadow: 0 15px 40px rgba(0,113,227,.15), 0 0 0 1px rgba(0,113,227,.08);
+}
+.m-prod-list .c-pic::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.5));
+    opacity: 0;
+    transition: opacity .35s;
+    z-index: 1;
+    pointer-events: none;
+}
+.m-prod-list .li:hover .c-pic::after {
+    opacity: 1;
+}
+.m-prod-list .m-more {
+    position: relative;
+    overflow: hidden;
+    transition: all .35s cubic-bezier(.16,1,.3,1);
+}
+.m-prod-list .m-more::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #0071e3;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s cubic-bezier(.16,1,.3,1);
+    z-index: -1;
+}
+.m-prod-list .li:hover .m-more {
+    color: #fff;
+    border-color: #0071e3;
+}
+.m-prod-list .li:hover .m-more::before {
+    transform: scaleX(1);
+}
+/* ============================================================
+   [C1 专属] 增强动效 END
+   ============================================================ */
+
+/* === 分页 === */
+.m-pages {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+}
+.m-pages .item {
+    display: inline-block;
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+    margin: 0 3px;
+    border-radius: 4px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.m-pages .item:hover {
+    background: #f0f0f0;
+}
+.m-pages .item.on {
+    background: #0071e3;
+    color: #fff;
+}
+.m-pages .item.prev,
+.m-pages .item.next {
+    border: 1px solid #ddd;
+}
+.m-pages .form {
+    display: inline-block;
+    margin-left: 12px;
+}
+.m-pages .ipt {
+    width: 44px;
+    height: 36px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 4px;
+}
+.m-pages .btn {
+    height: 36px;
+    padding: 0 14px;
+    background: #1d1d1f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* === Banner === */
+/* ============================================================
+   [C1 专属] Banner 入场动画 keyframes + 动画属性
+   C2 版本仅有 font-size 声明，无动画
+   ============================================================ */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.md-ban-production-2 .tit {
+    font-size: 44px !important;
+    animation: fadeUp 1.8s cubic-bezier(.16,1,.3,1) forwards;
+}
+.md-ban-production-2 .desc {
+    font-size: 18px !important;
+    animation: fadeUp 2.2s cubic-bezier(.16,1,.3,1) 0.8s forwards;
+    opacity: 0;
+}
+/* ============================================================
+   [C1 专属] Banner 动画 END
+   ============================================================ */
+
+/* === 响应式：平板 === */
+@media (max-width: 1024px) {
+    .m-prod-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+    .md-prod-1 .side {
+        width: 240px;
+        min-width: 240px;
+    }
+    .md-prod-1 .main {
+        width: calc(100% - 240px);
+    }
+}
+
+/* === 响应式：手机端 === */
+@media (max-width: 900px) {
+    html {
+        font-size: 40px;
+    }
+    .md-prod-1 .side {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        min-width: 280px;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+    .md-prod-1.open .side {
+        transform: translateX(0);
+    }
+    .md-prod-1 .side-cnt {
+        height: 100%;
+        overflow-y: auto;
+        border-right: none;
+        box-shadow: 2px 0 20px rgba(0,0,0,.1);
+    }
+    .md-prod-1 .side .mask {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.4);
+        z-index: -1;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+    .md-prod-1.open .side .mask {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .md-prod-1 .main {
+        width: 100%;
+    }
+    .m-prod-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    .m-prod-list .text {
+        padding: 12px 10px 14px;
+    }
+    .m-prod-list .tit {
+        font-size: 14px;
+    }
+    .md-ban-production-2 .tit {
+        font-size: 28px !important;
+    }
+    .md-ban-production-2 .desc {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .m-prod-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .m-prod-list .text {
+        padding: 10px 8px 12px;
+    }
+    .m-prod-list .tit {
+        font-size: 13px;
+    }
+    .m-prod-list .desc {
+        font-size: 11px;
+    }
+    .m-prod-list .m-more {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+}
+
+/* === 全局 vXX 覆盖：vw 字号 → 固定 px === */
+.md-prod-1 .v14 { font-size: 14px; }
+.md-prod-1 .v15 { font-size: 15px; }
+.md-prod-1 .v16 { font-size: 16px; }
+.md-prod-1 .v17 { font-size: 17px; }
+.md-prod-1 .v18 { font-size: 18px; }
+.md-prod-1 .v20 { font-size: 20px; }
+.md-prod-1 .v22 { font-size: 22px; }
+.md-prod-1 .v24 { font-size: 24px; }
+
+.m-pages,
+.m-pages.v16 { font-size: 14px; }
+
+.m-pages .item { font-size: 14px; }
+
+.m-pages .ipt { font-size: 13px; width: 50px; height: 34px; }
+
+.m-pages .btn { font-size: 13px; height: 34px; padding: 0 12px; }
+
+.m-pages .form span { font-size: 13px; }
+
+/* 搜索框 */
+.head-1 .search.v14 { font-size: 14px; }
+
+.head-1 .search .search-ipt { font-size: 14px; }
+
+.head-1 .search .search-btn { font-size: 14px; }
+
+/* 移动端搜索浮层 */
+.md-search.v18 { font-size: 16px; }
+
+.md-search .ipt { font-size: 15px; }
+
+.md-search .btn { font-size: 15px; }
+
+/* 头部链接 */
+.head-1 .links.v18 { font-size: 15px; }
+
+/* === 产品工具栏（覆盖 rem 为 px）=== */
+.prod-toolbar {
+    padding: 6px 0 16px !important;
+    margin-bottom: 12px !important;
+}
+.prod-toolbar__count {
+    font-size: 13px !important;
+    text-transform: none !important;
+}
+.prod-toolbar__sort button {
+    font-size: 12px !important;
+    padding: 5px 12px !important;
+}
+
+/* 面包屑 */
+.md-bread.v16 { font-size: 13px; }
+
+/* 侧栏分类文字 — 保持固定 px */
+.side .v16 { font-size: 16px; }
+.side .v18 { font-size: 18px; }
+.side .v22 { font-size: 22px; }
+
+/* 底部 */
+.md-footer .v14 { font-size: 14px; }
+.md-footer .v15 { font-size: 15px; }
+.md-footer .v17 { font-size: 17px; }
+.md-footer .v18 { font-size: 18px; }
