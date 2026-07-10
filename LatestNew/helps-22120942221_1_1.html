@@ -42,8 +42,8 @@
     <!-- 分享 -->
     <link rel="stylesheet" href="../static/home/plugin/share/css/share.min.css">
     <!-- 自定义样式-->
-    <link rel="stylesheet" href="../static/home/css/theme.css">
-    <link rel="stylesheet" href="../static/home/css/apple-ui.css">
+    <link rel="stylesheet" href="../static/home/css/theme.css?v=20260710-premium">
+
     <link rel="stylesheet" href="../static/home/css/reset.css">
     <link rel="stylesheet" href="../static/home/css/style.css">
     <link rel="stylesheet" href="../static/home/css/common.css">
@@ -70,6 +70,7 @@
             .md-prod-1 .main { width: 100%; }
         }
     </style>
+    <link rel="stylesheet" href="../static/home/css/apple-ui.css?v=20260710-premium">
 </head>
 <body>
         <!-- 头部start -->
@@ -117,7 +118,7 @@
                     <li class="li1"><div class="a1-wrap"><a class="a1" href="../contact.html">Contact</a></div></li>
                 </ul>
             </nav>
-            <div class="nav-btn"><span></span><span></span><span></span></div>
+            <button class="nav-btn" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
             <div class="mask"></div>
         </div>
     </div>
@@ -386,7 +387,8 @@
             //     return false;
             // }
 
-            hn.load();// loading            // 发送数            $.ajax({
+            hn.load(); // loading
+            $.ajax({
                 url: $('#formBox4').attr('action'),
                 type: 'POST',
                 data: $("#formBox4").serializeArray(),
@@ -394,16 +396,19 @@
                 success: function(res){
                     if (res.code == 1)
                     {
-                        hn.hideLoad();// 关闭loading                        hn.msg(res.msg, 1, function (){
+                        hn.hideLoad(); // 关闭loading
+                        hn.msg(res.msg, 1, function (){
                             location.reload();
                         });
                     }else{
                         hn.msg(res.msg);
-                        hn.hideLoad();// 关闭loading                    }
+                        hn.hideLoad(); // 关闭loading
+                    }
                 },
                 error: function (){
                     hn.msg('请求异常');
-                    hn.hideLoad();// 关闭loading                }
+                    hn.hideLoad(); // 关闭loading
+                }
             });
 
         }
@@ -574,7 +579,7 @@
     <script src="../static/home/js/num-animate.js"></script>
     <!-- 自定义js -->
     <script src="../static/home/js/global.js"></script>
-    <script src="../static/home/js/js.js"></script>
+    <script src="../static/home/js/js.js?v=20260710-premium"></script>
     <script src="../static/home/js/common.js"></script>
 
     <!-- 异步加载js -->
@@ -591,21 +596,7 @@
             $.getScript('/static/home/plugin/photoswipe/photoswipe-ui-default.min.js');
             $.getScript('/static/home/plugin/share/js/social-share.min.js');
         }, 5000);
-    </script><script src="../static/home/hn.js">
-        // 移动端菜单
-        $('#menuBtn').on('click', function() {
-            $('#mainNav').toggleClass('open');
-            $('#navOverlay').toggleClass('show');
-            $('.header').toggleClass('menu-open');
-            $('body').toggleClass('noscroll');
-        });
-        $('#navOverlay').on('click', function() {
-            $('#mainNav').removeClass('open');
-            $('#navOverlay').removeClass('show');
-            $('.header').removeClass('menu-open');
-            $('body').removeClass('noscroll');
-        });
-</script>
+    </script>
 
 
 

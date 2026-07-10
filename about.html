@@ -26,10 +26,11 @@
 
 <script src="static/home/js/tracking.js"></script>
 <!-- 轮播图-->    <link rel="stylesheet" href="static/home/plugin/swiper/swiper.min.css">    <!-- 相册 -->    <link rel="stylesheet" href="static/home/plugin/photoswipe/photoswipe.css">
-<!-- 分享 -->    <link rel="stylesheet" href="static/home/plugin/share/css/share.min.css">    <!-- 自定义样式-->    <link rel="stylesheet" href="static/home/css/theme.css">
-    <link rel="stylesheet" href="static/home/css/apple-ui.css">
+<!-- 分享 -->    <link rel="stylesheet" href="static/home/plugin/share/css/share.min.css">    <!-- 自定义样式-->    <link rel="stylesheet" href="static/home/css/theme.css?v=20260710-premium">
+
 <link rel="stylesheet" href="static/home/css/reset.css">    <link rel="stylesheet" href="static/home/css/style.css">
     <link rel="stylesheet" href="static/home/css/common.css">
+    <link rel="stylesheet" href="static/home/css/apple-ui.css?v=20260710-premium">
 </head>
 <body>        <!-- 头部start -->    <header class="md-header">
     <div class="head-1">
@@ -75,7 +76,7 @@
                     <li class="li1"><div class="a1-wrap"><a class="a1" href="contact.html">Contact</a></div></li>
                 </ul>
             </nav>
-            <div class="nav-btn"><span></span><span></span><span></span></div>
+            <button class="nav-btn" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
             <div class="mask"></div>
         </div>
     </div>
@@ -156,23 +157,40 @@
 </script> -->    <!-- 分享 -->    <!-- <script src="static/home/plugin/share/js/social-share.min.js">
 </script> -->    <!-- 数字动画 -->    <script src="static/home/js/num-animate.js">
 </script>    <!-- 自定义js -->    <script src="static/home/js/global.js">
-</script>    <script src="static/home/js/js.js">
+</script>    <script src="static/home/js/js.js?v=20260710-premium">
 </script>
     <!-- 异步加载js -->    <script>        // setTimeout(function() {            // $.getScript('/static/home/js/jquery-3.7.1.min.js');            // $.getScript('/static/home/plugin/swiper/swiper.min.js');            // $.getScript('/static/home/js/num-animate.js');            // $.getScript('/static/home/js/global.js');            // $.getScript('/static/home/js/js.js');        // }, 500);        setTimeout(function() {            $.getScript('/static/home/plugin/photoswipe/photoswipe.js');            $.getScript('/static/home/plugin/photoswipe/photoswipe-ui-default.min.js');            $.getScript('/static/home/plugin/share/js/social-share.min.js');        }, 5000);    </script><script src="static/home/hn.js">
-</script>    <script>        $(function() {            // 关于我们数字效果            f_num('.md-about-1 .num');// Team Activity            $('.md-about-6').each(function(i, e) {                mySwiper($(e).find('.swiper-container'), {                    autoplay: 5000,                    autoplayDisableOnInteraction: false,                    slidesPerView: 3,                    spaceBetween: '3.125%',                    // 响应显示隐藏                    observer: true,                    observeParents: true,                    // 左右箭头                    prevButton: $(e).find('.prev'),                    nextButton: $(e).find('.next'),                    // 布局响应                    breakpoints: {                        900: {                            slidesPerView: 2                        },                        500: {                            slidesPerView: 1                        }                    }                })                viewImgList({                    img: $(e).find('.list img'),                    clickItem: $(e).find('.list .c-pic')                });            })            // 发展历程            $('.md-about-3').each(function(ii, ee) {                // 定位                $(ee).find('.list .li').each(function(i, e) {                    if ($(window).width() > 1920) {                        $(e).css('left', (50 + 111 * i) / 100 + 'rem');                    } else {                        $(e).css('left', (50 + 111 * i) + 'px');                    }                    if (i % 2 == 0) {                        var tops = [-4, 13, 62];                        var num = (i % 10) / 2;                        if (num > 2) {                            num = 5 - num                        }                        if ($(window).width() > 1920) {                            $(e).css('top', tops[num] / 100 + 'rem');                        } else {                            $(e).css('top', tops[num] + 'px');                        }                    } else {                        var bottoms = [64, 18, -6];                        var num = (i - 1) % 10 / 2;                        if (num > 2) {                            num = 4 - num                        }                        if ($(window).width() > 1920) {                            $(e).css('bottom', bottoms[num] / 100 + 'rem');                        } else {                            $(e).css('bottom', bottoms[num] + 'px');                        }                    }                })                // 设置宽度                var len = $(ee).find('.list .li').length;                var $container = $(ee).find('.container');                $(ee).find('.wrap').width(50 + 222 + (len - 1) * 111 + 'px');                // 动态设置高度                function getHisHeight() {                    var minTop = 0;                    $(ee).find('.list .li:nth-of-type(even)').each(function(i, e) {                        var h = $(e).outerHeight();                        if (h > minTop) {                            minTop = h                        }                    })                    $container.css('padding-top', minTop + 'px');                    //                     var minBottom = 0;                    $(ee).find('.list .li:nth-of-type(odd)').each(function(i, e) {                        var h = $(e).outerHeight();                        if (h > minBottom) {                            minBottom = h                        }                    })                    $container.css('padding-bottom', minBottom + 'px');                }                getHisHeight()                $(window).resize(getHisHeight);                // 鼠标按住滑动                $container.on('mousedown', function(e) {                    if ($(e.target).closest('.tx').length > 0) {                        return;                    }                    var x_0 = e.clientX                    var left_0 = $container.scrollLeft();                    function move(e) {                        var x = left_0 + x_0 - e.clientX                        $container.scrollLeft(x);                    }                    function up() {                        $(window).off('mousemove', move);                        $(window).off('mouseup', up);                        $container.off('selectstart', select);                    }                    function select(e) {                        e.preventDefault();                    }                    $container.on('selectstart', select)                    $(window).on('mousemove', move)                    $(window).on('mouseup', up);                })                // 弹窗大图                $(ee).find('.list .img').on('click', function() {                    var img = new Image();                    var src = $(this).find('img').attr('src')                    console.log(src);                    img.src = src;                    img.onload = function () {                        var w = img.width                        var h = img.height                        var options = {                            index: 0,                            shareEl: false,                            fullscreenEl: false,                        };                        gallery = new PhotoSwipe(                            document.querySelectorAll(".pswp")[0],                            PhotoSwipeUI_Default,                            [{                                src: src,                                w: w,                                h: h                            }],                            options                        );                        gallery.init();                    };                });            })        })    
-        // 移动端菜单
-        $('#menuBtn').on('click', function() {
-            $('#mainNav').toggleClass('open');
-            $('#navOverlay').toggleClass('show');
-            $('.header').toggleClass('menu-open');
-            $('body').toggleClass('noscroll');
+</script>    <script>
+    $(function() {
+        if (typeof f_num === 'function') {
+            f_num('.md-about-1 .num');
+        }
+
+        $('.md-about-6').each(function(i, section) {
+            if (typeof mySwiper === 'function') {
+                mySwiper($(section).find('.swiper-container'), {
+                    autoplay: 5000,
+                    autoplayDisableOnInteraction: false,
+                    slidesPerView: 3,
+                    spaceBetween: '3.125%',
+                    observer: true,
+                    observeParents: true,
+                    prevButton: $(section).find('.prev'),
+                    nextButton: $(section).find('.next'),
+                    breakpoints: {
+                        900: { slidesPerView: 2 },
+                        500: { slidesPerView: 1 }
+                    }
+                });
+            }
+            if (typeof viewImgList === 'function') {
+                viewImgList({
+                    img: $(section).find('.list img'),
+                    clickItem: $(section).find('.list .c-pic')
+                });
+            }
         });
-        $('#navOverlay').on('click', function() {
-            $('#mainNav').removeClass('open');
-            $('#navOverlay').removeClass('show');
-            $('.header').removeClass('menu-open');
-            $('body').removeClass('noscroll');
-        });
+    });
 </script>
 </body>
 </html>

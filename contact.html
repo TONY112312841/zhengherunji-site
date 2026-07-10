@@ -41,13 +41,14 @@
     <link rel="stylesheet" href="static/home/plugin/share/css/share.min.css">
     <link rel="stylesheet" href="static/home/plugin/layui/css/layui.css">
     <!-- 自定义样式-->
-    <link rel="stylesheet" href="static/home/css/theme.css">
-    <link rel="stylesheet" href="static/home/css/apple-ui.css">
+    <link rel="stylesheet" href="static/home/css/theme.css?v=20260710-premium">
+
 <link rel="stylesheet" href="static/home/css/reset.css">
     <link rel="stylesheet" href="static/home/css/style.css">
     <link rel="stylesheet" href="static/home/css/common.css">
 
 <script src="static/home/js/tracking.js"></script>
+    <link rel="stylesheet" href="static/home/css/apple-ui.css?v=20260710-premium">
 </head>
 <body>
         <!-- 头部start -->
@@ -95,7 +96,7 @@
                     <li class="li1"><div class="a1-wrap"><a class="a1" href="contact.html">Contact</a></div></li>
                 </ul>
             </nav>
-            <div class="nav-btn"><span></span><span></span><span></span></div>
+            <button class="nav-btn" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
             <div class="mask"></div>
         </div>
     </div>
@@ -543,76 +544,13 @@
             $(this).parent().hide()
         })
 
-        function formSave(){
-            console.log('废弃');return false;
-            // 检验数            if ($('#formBox input[name=contact_name]').val() == '')
-            {
-                hn.msg("Enter your name");
-                return false;
-            }
-            // if ($('#formBox input[name=phone]').val() == '')
-            // {
-            //     hn.msg('Please enter phone number');
-            //     return false;
-            // }
-            if ($('#formBox input[name=email]').val() == '')
-            {
-                hn.msg("Enter your email");
-                return false;
-            }
-            if ($('#formBox input[name=job_name]').val() == '')
-            {
-                hn.msg("Enter your Order Quantity");
-                return false;
-            }
-
-            var file = $("#enclosure")[0].files[0];
-            // console.log(file);return false;
-            if ($('#formBox #content').val() == '')
-            {
-                hn.msg('Please enter Message');
-                return false;
-            }
-            // /^[a-zA-Z0-9.!#$%&'*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*.[a-zA-Z0-9-]{2,}$/`
-            // var email_reg  = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-            // if (!email_reg.test(email)) {
-            //     hn.msg('邮箱格式不正);
-            //     return false;
-            // }
-            // if ($('#captcha').val() == '') {
-            //     hn.msg('验证码不能为);
-            //     $('#captcha').focus();
-            //     return false;
-            // }
-
-            hn.load();// loading            // 发送数            $.ajax({
-                url: $('#formBox').attr('action'),
-                type: 'POST',
-                data: $("#formBox").serializeArray(),
-                dataType: 'Json',
-                success: function(res){
-                    if (res.code == 1)
-                    {
-                        hn.hideLoad();// 关闭loading                        hn.msg(res.msg, 1, function (){
-                            location.reload();
-                        });
-                    }else{
-                        hn.msg(res.msg);
-                        hn.hideLoad();// 关闭loading                    }
-                },
-                error: function (){
-                    hn.msg('请求异常');
-                    hn.hideLoad();// 关闭loading                }
-            });
-
-        }
-
         function formSave2(e){
             var serializeObj={};
             $($('#formBox').serializeArray()).each(function(){
                 serializeObj[this.name]=this.value;
             });
-            // 检验数            if ($('#formBox input[name=contact_name]').val() == '')
+            // 检验数据
+            if ($('#formBox input[name=contact_name]').val() == '')
             {
                 hn.msg("Enter your name");
                 return false;
@@ -669,7 +607,8 @@
             formData.append("csrf_token", $("#formBox input[name=csrf_token]").val());
             formData.append("file",file);
 
-            hn.load();// loading            // 发送数            $.ajax({
+            hn.load(); // loading
+            $.ajax({
                 // url: $(e)[0].action,
                 url: $('#formBox').attr('action'),
                 type: 'POST',
@@ -680,16 +619,19 @@
                 success: function(res){
                     if (res.code == 1)
                     {
-                        hn.hideLoad();// 关闭loading                        hn.msg(res.msg, 1, function (){
+                        hn.hideLoad(); // 关闭loading
+                        hn.msg(res.msg, 1, function (){
                             location.reload();
                         });
                     }else{
                         hn.msg(res.msg);
-                        hn.hideLoad();// 关闭loading                    }
+                        hn.hideLoad(); // 关闭loading
+                    }
                 },
                 error: function (){
                     hn.msg('请求异常');//请求异常
-                    hn.hideLoad();// 关闭loading                }
+                    hn.hideLoad(); // 关闭loading
+                }
             });
             return false;
         }
@@ -847,7 +789,7 @@
     
     
     <script src="static/home/js/common.js"></script>
-    <script src="static/home/js/jquery-3.7.1.min.js"></script>
+
     <!-- <script src="static/home/js/placeholder.min.js"></script>
     <script src="static/home/js/ifie8.js"></script> -->
     <!-- 轮播图-->
@@ -861,7 +803,7 @@
     <script src="static/home/js/num-animate.js"></script>
     <!-- 自定义js -->
     <script src="static/home/js/global.js"></script>
-    <script src="static/home/js/js.js"></script>
+    <script src="static/home/js/js.js?v=20260710-premium"></script>
     <!-- 异步加载js -->
     <script>
         // setTimeout(function() {
@@ -876,21 +818,7 @@
             $.getScript('/static/home/plugin/photoswipe/photoswipe-ui-default.min.js');
             $.getScript('/static/home/plugin/share/js/social-share.min.js');
         }, 5000);
-    </script><script src="static/home/hn.js">
-        // 移动端菜单
-        $('#menuBtn').on('click', function() {
-            $('#mainNav').toggleClass('open');
-            $('#navOverlay').toggleClass('show');
-            $('.header').toggleClass('menu-open');
-            $('body').toggleClass('noscroll');
-        });
-        $('#navOverlay').on('click', function() {
-            $('#mainNav').removeClass('open');
-            $('#navOverlay').removeClass('show');
-            $('.header').removeClass('menu-open');
-            $('body').removeClass('noscroll');
-        });
-</script>
+    </script>
 
 
 

@@ -49,7 +49,12 @@ $(document).ready(function () {
     // 弹窗导航
     $('.nav-btn').on('click', function () {
         $('.md-header').toggleClass('open');
-        if ($('.md-header').hasClass('open')) {
+        var isOpen = $('.md-header').hasClass('open');
+        $(this).attr({
+            'aria-expanded': isOpen ? 'true' : 'false',
+            'aria-label': isOpen ? 'Close navigation' : 'Open navigation'
+        });
+        if (isOpen) {
             $('body').addClass('noscroll');
             // 移动端注入联系方式
             var $nav = $('.md-header .nav');
@@ -72,6 +77,10 @@ $(document).ready(function () {
     // 蒙版点击收起导航
     $('.md-header .mask').on('click', function () {
         $('.md-header').removeClass('open');
+        $('.nav-btn').attr({
+            'aria-expanded': 'false',
+            'aria-label': 'Open navigation'
+        });
         $('body').removeClass('noscroll')
     })
 

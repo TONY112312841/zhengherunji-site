@@ -859,17 +859,17 @@ window.addEventListener('load', function () {
     <script src="../static/home/js/num-animate.js"></script>
     <!-- 自定义js -->
     <script src="../static/home/js/global.js"></script>
-    <script src="../static/home/js/js.js"></script>
+    <script src="../static/home/js/js.js?v=20260710-premium"></script>
 
     <!-- 异步加载js -->
     <script>
-        / setTimeout(function() {
-            / $.getScript('/static/home/js/jquery-3.7.1.min.js');
-            / $.getScript('/static/home/plugin/swiper/swiper.min.js');
-            / $.getScript('/static/home/js/num-animate.js');
-            / $.getScript('/static/home/js/global.js');
-            / $.getScript('/static/home/js/js.js');
-        / }, 500);
+        // setTimeout(function() {
+            // $.getScript('/static/home/js/jquery-3.7.1.min.js');
+            // $.getScript('/static/home/plugin/swiper/swiper.min.js');
+            // $.getScript('/static/home/js/num-animate.js');
+            // $.getScript('/static/home/js/global.js');
+            // $.getScript('/static/home/js/js.js');
+        // }, 500);
         setTimeout(function() {
             $.getScript('/static/home/plugin/photoswipe/photoswipe.js');
             $.getScript('/static/home/plugin/photoswipe/photoswipe-ui-default.min.js');
@@ -889,10 +889,10 @@ window.addEventListener('load', function () {
             if ($('.cat-link-2.current').length > 0) {
                 moveToEle('main', 0);
             }
-            / ---------------------------------------------------------------------
-            / 侧栏分类
-            / ---------------------------------------------------------------------
-            var accordion = true; / 是否一次只展开一个二级
+            // ---------------------------------------------------------------------
+            // 侧栏分类
+            // ---------------------------------------------------------------------
+            var accordion = true; // 是否一次只展开一个二级
             $('.cat-link').on('click', function(e) {
                 if ($(this).siblings('.cat-list').length > 0) {
                     e.preventDefault();
@@ -912,17 +912,17 @@ window.addEventListener('load', function () {
                     }
                 }
             });
-            / 当前二级的父级分类自动展开
+            // 当前二级的父级分类自动展开
             $('.current').parents('.cat-item-1').addClass('open');
             $('.current').parents('.cat-list-2').slideDown();
-            / ---------------------------------------------------------------------
-            / 侧栏手机端浮窗
-            / ---------------------------------------------------------------------
-            / 打开
+            // ---------------------------------------------------------------------
+            // 侧栏手机端浮窗
+            // ---------------------------------------------------------------------
+            // 打开
             $('.more-cate').on('click', function() {
                 $(this).parents('.md-prod-1').addClass('open')
             })
-            / 收起
+            // 收起
             $('.md-prod-1 .side .mask').on('click', function() {
                 $(this).parents('.md-prod-1').removeClass('open')
             })
