@@ -728,14 +728,6 @@
   filter: sepia(0.18) saturate(0.72) brightness(1.06);
 }
 
-.global-globe .map-shadow {
-  position: absolute;
-  inset: auto 8% -4% 8%;
-  z-index: 1;
-  width: 84%;
-  opacity: 0.52;
-}
-
 .global-globe .dot-point {
   position: absolute;
   z-index: 4;
@@ -769,55 +761,6 @@
   margin-top: 2px;
   font-size: 12px;
 }
-
-.global-flags {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.global-flags .flag {
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  padding: 6px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.10);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.20);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-}
-
-.global-flags .flag img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.global-flags .f1 { left: 5%; top: 12%; }
-.global-flags .f2 { left: 13%; top: 49%; }
-.global-flags .f3 { left: 20%; top: 75%; }
-.global-flags .f4 { left: 29%; top: 6%; }
-.global-flags .f5 { left: 39%; top: 82%; }
-.global-flags .f6 { left: 52%; top: 3%; }
-.global-flags .f7 { right: 36%; top: 78%; }
-.global-flags .f8 { right: 25%; top: 8%; }
-.global-flags .f9 { right: 16%; top: 61%; }
-.global-flags .f10 { right: 7%; top: 24%; }
-.global-flags .f11 { right: 3%; top: 82%; }
-.global-flags .f12 { left: 2%; top: 81%; }
-.global-flags .f13 { left: 43%; top: 12%; }
-.global-flags .f14 { right: 42%; top: 61%; }
-.global-flags .f15 { left: 8%; top: 70%; }
-.global-flags .f16 { right: 9%; top: 48%; }
-.global-flags .f17 { left: 31%; top: 88%; }
-.global-flags .f18 { right: 29%; top: 87%; }
-.global-flags .f19 { left: 24%; top: 20%; }
-.global-flags .f20 { right: 19%; top: 33%; }
-.global-flags .f21 { left: 17%; top: 3%; }
-.global-flags .f22 { right: 2%; top: 4%; }
 
 .global-stats {
   margin-top: 62px;
@@ -1408,10 +1351,6 @@
   .case_img {
     height: 220px;
     padding: 12px;
-  }
-
-  .global-flags {
-    display: none;
   }
 
   .global-globe {

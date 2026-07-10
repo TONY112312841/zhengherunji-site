@@ -475,6 +475,12 @@ function initIntersectionObserver() {
                     src = src.replace(/\(/g, "%28");
                     src = src.replace(/\)/g, "%29");
                     if (el.tagName === 'IMG') {
+                        el.addEventListener('load', function() {
+                            el.classList.add('is-loaded');
+                        }, { once: true });
+                        el.addEventListener('error', function() {
+                            el.classList.add('is-loaded', 'is-load-error');
+                        }, { once: true });
                         el.src = src;
                     } else {
                         el.style.backgroundImage = 'url("' + src + '")';
@@ -484,11 +490,14 @@ function initIntersectionObserver() {
                 imgObserver.unobserve(el);
             }
         });
-    }, { rootMargin: '200px 0px' });
+    }, { rootMargin: '600px 0px' });
 
     document.querySelectorAll('[data-src]').forEach(function(el) {
         if (el.classList.contains('swiper-lazy')) return;
         if (el.tagName === 'IMG' && el.src) return;
+        if (el.tagName === 'IMG') {
+            el.classList.add('lazy-media');
+        }
         imgObserver.observe(el);
     });
 

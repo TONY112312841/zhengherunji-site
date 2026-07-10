@@ -27,6 +27,19 @@ img {
   max-width: 100%;
 }
 
+img.lazy-media {
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+img.lazy-media.is-loaded {
+  opacity: 1;
+}
+
+img.lazy-media.is-load-error {
+  opacity: 0.22;
+}
+
 a,
 button,
 input,

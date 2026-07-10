@@ -1,0 +1,26 @@
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/upload/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/UploadFiles/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/home/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/home/plugin/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/home/css/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/static/home/js/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/*
+  X-Content-Type-Options: nosniff
