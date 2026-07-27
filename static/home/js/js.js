@@ -62,7 +62,7 @@ $(document).ready(function () {
                 $nav.find('.logo-tx').after(
                     '<div class="nav-contact-mobile" style="padding:10px 15px;border-bottom:1px dashed rgba(0,0,0,.2);margin-bottom:8px;">' +
                     '<a href="mailto:zhengherunji@gmail.com" style="display:block;padding:6px 0;color:#333;text-decoration:none;font-size:14px;">Email: zhengherunji@gmail.com</a>' +
-                    '<a href="tel:+13802389591" style="display:block;padding:6px 0;color:#333;text-decoration:none;font-size:14px;">Phone: +1(380)238-9591</a>' +
+                    '<a href="tel:+8613802389591" style="display:block;padding:6px 0;color:#333;text-decoration:none;font-size:14px;">Phone: +86 138 0238 9591</a>' +
                     '</div>'
                 );
             }
