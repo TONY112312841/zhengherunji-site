@@ -4,6 +4,16 @@ import path from 'node:path';
 const root = process.cwd();
 const domain = 'https://zhrjshelving.com';
 const write = process.argv.includes('--write');
+const assetVersion = '20260820-4';
+const contactDisplay = '+86 186 3266 6061';
+const contactNumber = '8618632666061';
+let optimizedImages = {};
+
+try {
+  optimizedImages = JSON.parse(await readFile(path.join(root, 'tools', 'optimized-images.json'), 'utf8'));
+} catch {
+  optimizedImages = {};
+}
 
 const excludedDirectories = new Set([
   '.git', '.wrangler', '.vercel', 'deploy', 'node_modules', '归档'
@@ -114,8 +124,8 @@ function ensureH1(html, relativePath) {
 }
 
 function ensureSharedAssets(html, prefix) {
-  const cssHref = `${prefix}static/home/css/site-foundation.css?v=20260727-4`;
-  const jsSrc = `${prefix}static/home/js/site-foundation.js?v=20260727-4`;
+  const cssHref = `${prefix}static/home/css/site-foundation.css?v=${assetVersion}`;
+  const jsSrc = `${prefix}static/home/js/site-foundation.js?v=${assetVersion}`;
 
   if (html.includes('site-foundation.css')) {
     html = html.replace(/(?:\.\.\/)*static\/home\/css\/site-foundation\.css\?v=[^"']+/i, cssHref);
@@ -139,7 +149,7 @@ function organizationSchema() {
     url: `${domain}/`,
     logo: `${domain}/upload/images/site/20260707/zhengherunji-logo-white-gold.jpg`,
     email: 'mailto:zhengherunji@gmail.com',
-    telephone: '+86-138-0238-9591',
+    telephone: '+86-186-3266-6061',
     foundingDate: '1999',
     address: {
       '@type': 'PostalAddress',
@@ -243,10 +253,52 @@ function normalizeBrandAndContact(html) {
     .replace(/ZHONGSHAN CHANGSHENG METAL PRODUCTS CO\.,?LTD/gi, 'ZHENGHERUNJI SHELVING')
     .replace(/Copyright ©\s*zhongshan changsheng metal products co,?\.?ltd\s*all rights reserved/gi, 'Copyright © ZHENGHERUNJI. All rights reserved.')
     .replace(/Copyright ©\s*zhengherunji\s*all rights reserved/gi, 'Copyright © ZHENGHERUNJI. All rights reserved.')
-    .replace(/\+1\(380\)238-9591/g, '+86 138 0238 9591')
-    .replace(/tel:\+13802389591/g, 'tel:+8613802389591')
-    .replace(/phone=13802389591/g, 'phone=8613802389591')
-    .replace(/WELLAND\+English\+WEB\+inquiry/gi, 'ZHENGHERUNJI+English+WEB+inquiry');
+    .replace(/\+1\(380\)238-9591/g, contactDisplay)
+    .replace(/\+86(?:-|\s*)138(?:-|\s*)0238(?:-|\s*)9591/g, contactDisplay)
+    .replace(/tel:\+?(?:86)?13802389591/gi, `tel:+${contactNumber}`)
+    .replace(/phone=(?:86)?13802389591/gi, `phone=${contactNumber}`)
+    .replace(/wa\.me\/(?:86)?13802389591/gi, `wa.me/${contactNumber}`)
+    .replace(/WELLAND\+English\+WEB\+inquiry/gi, 'ZHENGHERUNJI+English+WEB+inquiry')
+    .replace(/Approved by ISO, NSF, BSCI, TUV, Target and other authoritative certifications/gi, 'Quality systems and third-party audit documentation available for buyer review')
+    .replace(/Approved by ISO, NSF, BSCI, TUV, Target and more/gi, 'Quality systems and third-party audit documents available for buyer review')
+    .replace(/We are audited and approved by ISO, NSF, BSCI, TUV, Target, and Lowe's\./gi, 'Quality systems and third-party audit documentation are available for buyer review.')
+    .replace(/MCDONALDS'S SUPPLIER/gi, 'FOOD-SERVICE STORAGE')
+    .replace(/NSF (?:&|&amp;) ISO certified supplier for McDonald's\. Professional racks for food service, cold storage, vertical farming, greenhouse plant shelving, medical labs (?:&|&amp;) anti-static industrial use\./gi, 'Commercial wire shelving for food service, cold storage, cultivation, medical and anti-static applications. OEM support and technical documentation for global buyers.')
+    .replace(/Amazon\s*basic(?:s)? Audited Manufacture(?:r)?/gi, 'Experienced OEM wire shelving manufacturer')
+    .replace(/Trusted by world-renowned brands/gi, 'Retail and distribution experience')
+    .replace(/Long-term partnerships with leading global retailers/gi, 'Supporting international retail and distribution programs')
+    .replace(/21 consecutive years exporting to Japan with ~15% market share, recognized for premium quality control/gi, 'Long-term export experience serving quality-conscious Japanese buyers')
+    .replace(/Leave a message/gi, 'Start your project inquiry')
+    .replace(/Please leave us your inquiry, we would reply you quickly\./gi, 'Share your specifications and quantity. Our export team will reply via WhatsApp or email.')
+    .replace(/<script\s+(?:defer\s+)?src=(['"])((?:\.\.\/)*static\/home\/js\/tracking\.js)(?:\?v=[^"']*)?\1><\/script>/gi, `<script defer src="$2?v=${assetVersion}"></script>`)
+    .replace(/((?:\.\.\/)*static\/home\/js\/js\.js)\?v=[^"']+/gi, `$1?v=${assetVersion}`);
+}
+
+function normalizeOptimizedImages(html) {
+  for (const [source, target] of Object.entries(optimizedImages)) {
+    html = html.split(source).join(target);
+  }
+  return html;
+}
+
+function ensureProductImageAlts(html, relativePath, title) {
+  if (relativePath.split(path.sep)[0] !== 'products') return html;
+  const safeTitle = title.replace(/\s+/g, ' ').trim().replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  let count = 0;
+  return html.replace(/<img\b([^>]*?(?:src|data-src)=["'](?:\.\.\/)*(?:UploadFiles\/Product|upload\/images\/(?:product|ueditor|article)|UploadFiles\/FCK)[^"']*["'][^>]*?)\balt=["']\s*["']([^>]*)>/gi, (match, before, after) => {
+    count += 1;
+    const suffix = count === 1 ? 'product view' : `product detail ${count}`;
+    return `<img${before}alt="${safeTitle} — ${suffix}"${after}>`;
+  });
+}
+
+function ensureImageLoading(html) {
+  return html.replace(/<img\b([^>]*)>/gi, (tag, attributes) => {
+    if (/\bloading=["']/i.test(attributes)) return tag;
+    const priority = /\bfetchpriority=["']high["']/i.test(attributes) || /\bclass=["'][^"']*\blogo-img\b/i.test(attributes);
+    const decoding = /\bdecoding=["']/i.test(attributes) ? '' : ' decoding="async"';
+    return `<img loading="${priority ? 'eager' : 'lazy'}"${decoding}${attributes}>`;
+  });
 }
 
 function replacePropertyMeta(html, property, value) {
@@ -260,12 +312,14 @@ async function transform(file) {
   const canonical = canonicalFor(relativePath);
   const prefix = prefixFor(relativePath);
   const original = await readFile(file, 'utf8');
-  let html = normalizeBrandAndContact(original);
+  let html = normalizeOptimizedImages(normalizeBrandAndContact(original));
 
   const rawTitle = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || 'ZHENGHERUNJI Wire Shelving';
   const title = stripTags(rawTitle);
   html = ensureDescription(html, title);
   const description = decodeEntities(extractMeta(html, 'description'));
+  html = ensureProductImageAlts(html, relativePath, title);
+  html = ensureImageLoading(html);
   html = ensureThemeColor(html);
   html = addOrReplaceCanonical(html, canonical);
   html = replacePropertyMeta(html, 'og:url', canonical);

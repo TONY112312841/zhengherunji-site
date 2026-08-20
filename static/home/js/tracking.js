@@ -1,92 +1,92 @@
-/**
- * Google Analytics + Tawk.to 跟踪代码
- * 统一管理，避免在每个页面中重复内联
- */
-window.addEventListener('load', function () {
-  setTimeout(function () {
+(function () {
+  'use strict';
 
-    var gtagScript1 = document.createElement('script');
-    gtagScript1.async = true;
-    gtagScript1.src = 'https://www.googletagmanager.com/gtag/js?id=AW-777621748';
-    document.head.appendChild(gtagScript1);
+  var STORAGE_KEY = 'zhrj_analytics_consent';
+  var analyticsLoaded = false;
 
-    var gtagScript2 = document.createElement('script');
-    gtagScript2.async = true;
-    gtagScript2.src = 'https://www.googletagmanager.com/gtag/js?id=G-8B696YTE56';
-    document.head.appendChild(gtagScript2);
+  function loadAnalytics() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
 
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'AW-777621748');
-    gtag('config', 'G-8B696YTE56');
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', 'AW-777621748', { allow_google_signals: false });
+    window.gtag('config', 'G-8B696YTE56', { anonymize_ip: true });
 
-    if (window.location.pathname.includes('contact.html')) {
-      gtag('event', 'conversion', { 'send_to': 'AW-777621748/lpY2CIyFt9sBEPSh5vIC' });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-8B696YTE56';
+    document.head.appendChild(script);
+
+    document.addEventListener('click', function (event) {
+      var whatsapp = event.target.closest('[href*="whatsapp.com"], [href*="wa.me"]');
+      var email = event.target.closest('[href^="mailto:"]');
+      if (whatsapp) window.gtag('event', 'contact_whatsapp');
+      if (email) window.gtag('event', 'contact_email');
+    });
+  }
+
+  function saveChoice(value) {
+    try { localStorage.setItem(STORAGE_KEY, value); } catch (error) { /* Storage may be unavailable. */ }
+    if (value === 'accepted') loadAnalytics();
+  }
+
+  function readChoice() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (error) { return null; }
+  }
+
+  function openPreferences() {
+    var existing = document.querySelector('.site-consent');
+    if (existing) {
+      existing.hidden = false;
+      existing.querySelector('.site-consent__accept').focus();
+      return;
     }
 
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('[href*="whatsapp.com/send"]');
-      if (btn === null) return;
-      gtag('event', 'whatsapp点击');
+    var banner = document.createElement('aside');
+    banner.className = 'site-consent';
+    banner.setAttribute('aria-label', 'Analytics preferences');
+    banner.innerHTML =
+      '<div class="site-consent__copy"><strong>Your privacy choices</strong>' +
+      '<span>We use optional, privacy-conscious analytics to improve this international website. Essential contact features work without analytics.</span></div>' +
+      '<div class="site-consent__actions"><button type="button" class="site-consent__decline">Decline</button>' +
+      '<button type="button" class="site-consent__accept">Allow analytics</button></div>';
+    document.body.appendChild(banner);
+
+    banner.querySelector('.site-consent__decline').addEventListener('click', function () {
+      saveChoice('declined');
+      banner.hidden = true;
     });
-
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('[href*="mailto:"]');
-      if (btn === null) return;
-      gtag('event', '邮箱点击');
+    banner.querySelector('.site-consent__accept').addEventListener('click', function () {
+      saveChoice('accepted');
+      banner.hidden = true;
     });
+  }
 
-    if (window.location.pathname.includes('contact.html')) {
-      document.querySelectorAll('[type="button"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          var form = b.closest('form');
-          if (form.checkValidity() === false) return;
-          var email = form.querySelector('[name="email"]').value.trim().toLowerCase();
-          if (email === '') return;
-          var name = form.querySelector('[name="contact_name"]').value.trim();
-          if (name === '') return;
-          var quantity = form.querySelector('[name="job_name"]').value.trim();
-          if (quantity === '') return;
-          gtag('set', 'user_data', { "email": email });
-          gtag('event', '联系我们页面表单');
-        });
-      });
-    }
+  function addPreferencesLink() {
+    if (document.querySelector('.site-cookie-preferences')) return;
+    var footer = document.querySelector('.md-footer .foot-2 .tx, .md-footer .copyright');
+    if (!footer) return;
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'site-cookie-preferences';
+    button.textContent = 'Cookie preferences';
+    button.addEventListener('click', openPreferences);
+    footer.appendChild(document.createTextNode(' · '));
+    footer.appendChild(button);
+  }
 
-    if (window.location.pathname.includes('contact.html')) {
-      document.querySelectorAll('[type="button"]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          var form = b.closest('form');
-          if (form.checkValidity() === false) return;
-          var email = form.querySelector('[name="email"]').value.trim().toLowerCase();
-          if (email === '') return;
-          var name = form.querySelector('[name="contact_name"]').value.trim();
-          if (name === '') return;
-          var quantity = form.querySelector('[name="job_name"]').value.trim();
-          if (quantity === '') return;
-          gtag('set', 'user_data', { "email": email });
-          gtag('event', '产品页面表单');
-        });
-      });
-    }
+  function init() {
+    var choice = readChoice();
+    if (choice === 'accepted') loadAnalytics();
+    if (!choice) openPreferences();
+    addPreferencesLink();
+  }
 
-    document.addEventListener("click", function (e) {
-      var button = e.target.closest('[type="button"]');
-      if (button === null) return;
-      var quantityEl = document.querySelector('[name="job_name"]');
-      var messageEl = document.querySelector('[name="content"]');
-      var emailEl = document.querySelector('[name="email"]');
-      if (!quantityEl || !messageEl || !emailEl) return;
-      var quantity = quantityEl.value;
-      var message = messageEl.value;
-      var email = emailEl.value.trim().toLowerCase();
-      if (email != "" && quantity != '' && message != '') {
-        gtag("set", "user_data", { email: email });
-        gtag('event', 'conversion', { 'send_to': 'AW-777621748/HAwICK-b_J8cEPSh5vIC' });
-        gtag('event', '联系我们页面表单2', { 'send_to': 'G-8B696YTE56' });
-      }
-    });
-
-  }, 3000);
-});
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+})();
