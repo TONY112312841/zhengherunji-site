@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const domain = 'https://zhrjshelving.com';
 const write = process.argv.includes('--write');
-const assetVersion = '20260820-4';
+const assetVersion = '20260820-5';
 const contactDisplay = '+86 186 3266 6061';
 const contactNumber = '8618632666061';
 let optimizedImages = {};
